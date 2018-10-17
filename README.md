@@ -49,3 +49,7 @@ funcionalidades devem poder ser realizadas através da interface.
 ### Pontuação extra
 
 * Será acrescido de pontuação extra o projeto que possuir, em seu conteúdo, testes unitários (valores a serem definidos).
+
+### Referências
+
+* [Consumo da API](https://square.github.io/retrofit/)
