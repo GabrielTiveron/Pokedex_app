@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.Pokedex" />
-        <activity android:name=".view.CadastroTreinador"></activity>
+        <activity android:name=".view.CadastroTreinador" />
+        <activity android:name=".view.DetalhesPokemon"></activity>
     </application>
 
 </manifest>

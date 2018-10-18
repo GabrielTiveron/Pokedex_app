@@ -1,6 +1,7 @@
 package com.example.gabrieltiveron.ep_2.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ public class AdapterDefault  extends RecyclerView.Adapter<AdapterDefault.ViewHol
 
     private ArrayList<Pokemon> pokemons;
     private Context context;
+    private Intent intent;
+
 
     public AdapterDefault(Context context) {
         pokemons = new ArrayList<>(  );
@@ -34,9 +37,17 @@ public class AdapterDefault  extends RecyclerView.Adapter<AdapterDefault.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Pokemon aux = pokemons.get( position );
         holder.textView.setText( aux.getName() );
+        holder.imageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent( context, DetalhesPokemon.class );
+                intent.putExtra( "id", String.valueOf(pokemons.get( position ).getNumber()) );
+                context.startActivity(intent);
+            }
+        } );
 
         Glide.with(context)
             .load("http://pokeapi.co/media/sprites/pokemon/" + aux.getNumber() + ".png")
@@ -66,6 +77,7 @@ public class AdapterDefault  extends RecyclerView.Adapter<AdapterDefault.ViewHol
             textView = itemView.findViewById( R.id.Texto );
             imageView = itemView.findViewById( R.id.Imagem );
         }
+
 
 
     }

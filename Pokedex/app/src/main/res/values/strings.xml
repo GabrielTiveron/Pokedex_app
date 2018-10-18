@@ -3,4 +3,9 @@
     <string name="cadastro">CADASTRAR</string>
     <string name="pokedex">POKEDEX</string>
     <string name="retorno">RETORNAR</string>
+    <string name="exemploNome">Ex: Lucas</string>
+    <string name="nome">Nome:</string>
+    <string name="pokemon">Pokemons:</string>
+    <string name="exemploPokemon">Ex: Vulpix</string>
+    <string name="registrar">REGISTRAR</string>
 </resources>
