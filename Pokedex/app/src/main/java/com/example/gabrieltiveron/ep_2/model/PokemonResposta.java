@@ -2,7 +2,7 @@ package com.example.gabrieltiveron.ep_2.model;
 
 import android.util.Log;
 
-import com.example.gabrieltiveron.ep_2.view.AdapterDefault;
+import com.example.gabrieltiveron.ep_2.view.AdapterPokedex;
 import com.example.gabrieltiveron.ep_2.pokeAPI.Servico;
 import com.example.gabrieltiveron.ep_2.view.AdapterListaCadastro;
 
@@ -25,7 +25,7 @@ public class PokemonResposta {
         this.results = results;
     }
 
-    public void obterDados(Retrofit retrofit, final String TAG, final AdapterDefault adapterDefault) {
+    public void obterDados(Retrofit retrofit, final String TAG, final AdapterPokedex adapterPokedex, final ArrayList<Pokemon> pokemon) {
         Servico servico = retrofit.create( Servico.class );
 
 
@@ -38,7 +38,9 @@ public class PokemonResposta {
 
 
                     PokemonResposta pokemonResposta = response.body();
-                    adapterDefault.Adicionar( pokemonResposta.getResults() );
+                    adapterPokedex.Adicionar( pokemonResposta.getResults() );
+
+
 
 
                 } else {
@@ -65,7 +67,7 @@ public class PokemonResposta {
                 if(response.isSuccessful()){
                     PokemonResposta pokemonResposta = response.body();
 
-                    adapterListaCadastro.Adicionar( pokemonResposta.getResults(), nome );
+                    adapterListaCadastro.adicionar( pokemonResposta.getResults(), nome );
                 }
             }
 

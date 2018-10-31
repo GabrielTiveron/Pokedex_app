@@ -13,6 +13,6 @@ public interface Servico {
     Call<PokemonResposta> obterListaPokemon();
 
     @GET("pokemon/{id}")
-    Call<PokemonDetalhes> obterDetalhes(@Path( "id" ) String id);
+    Call<PokemonDetalhes> obterDetalhes(@Path( "id" ) int id);
 
 }

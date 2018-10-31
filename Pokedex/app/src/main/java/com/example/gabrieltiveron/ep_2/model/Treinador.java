@@ -1,10 +1,20 @@
 package com.example.gabrieltiveron.ep_2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Treinador {
+public class Treinador implements Serializable {
     private ArrayList<Pokemon> pokemons;
     private String nome;
+    private String sexo;
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 
     public Treinador(ArrayList<Pokemon> pokemons, String nome) {
         this.pokemons = pokemons;

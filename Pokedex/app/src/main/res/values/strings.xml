@@ -8,4 +8,8 @@
     <string name="pokemon">Pokemons:</string>
     <string name="exemploPokemon">Ex: Vulpix</string>
     <string name="registrar">REGISTRAR</string>
+    <string name="treinadores">TREINADORES</string>
+    <string name="homem">Homem</string>
+    <string name="mulher">Mulher</string>
+    <string name="pesquisa">Pesquise aqui</string>
 </resources>

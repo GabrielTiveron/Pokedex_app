@@ -8,13 +8,13 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/ListinhaMassa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/pokedexList"
+        style="@style/pokedexList"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/retorno" />
+        app:layout_constraintTop_toBottomOf="@+id/pesquisa" />
 
     <Button
         android:id="@+id/retorno"
@@ -28,5 +28,28 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="189dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="70dp"
+        android:background="@drawable/logo_pokemon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/retorno"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/pesquisa"
+        android:layout_width="312dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:queryHint="@string/pesquisa"/>
 
 </android.support.constraint.ConstraintLayout>

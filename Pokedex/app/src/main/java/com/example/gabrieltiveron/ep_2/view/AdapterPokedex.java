@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,45 +17,49 @@ import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdapterDefault  extends RecyclerView.Adapter<AdapterDefault.ViewHolder>{
+public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHolder> {
 
     private ArrayList<Pokemon> pokemons;
+    private ArrayList<Pokemon> listaPokemon;
     private Context context;
     private Intent intent;
 
 
-    public AdapterDefault(Context context) {
-        pokemons = new ArrayList<>(  );
+    public AdapterPokedex(Context context) {
+        pokemons = new ArrayList<>();
         this.context = context;
+        listaPokemon = new ArrayList<>();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from( parent.getContext() ).inflate(R.layout.pokemon_default, parent, false);
+        View view = LayoutInflater.from( parent.getContext() ).inflate( R.layout.adapter_lista_pokedex, parent, false );
         return new ViewHolder( view );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Pokemon aux = pokemons.get( position );
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final Pokemon aux = pokemons.get( position );
         holder.textView.setText( aux.getName() );
         holder.imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent( context, DetalhesPokemon.class );
-                intent.putExtra( "id", String.valueOf(pokemons.get( position ).getNumber()) );
-                context.startActivity(intent);
+                intent.putExtra( "id", aux.getNumber() );
+                intent.putExtra( "nome", aux.getName() );
+                context.startActivity( intent );
             }
         } );
 
-        Glide.with(context)
-            .load("http://pokeapi.co/media/sprites/pokemon/" + aux.getNumber() + ".png")
-            .centerCrop()
-            .crossFade()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(holder.imageView);
+        Glide.with( context )
+                .load( "http://pokeapi.co/media/sprites/pokemon/" + aux.getNumber() + ".png" )
+                .centerCrop()
+                .crossFade()
+                .diskCacheStrategy( DiskCacheStrategy.ALL )
+                .into( holder.imageView );
     }
 
     @Override
@@ -63,11 +68,12 @@ public class AdapterDefault  extends RecyclerView.Adapter<AdapterDefault.ViewHol
     }
 
     public void Adicionar(ArrayList<Pokemon> results) {
-        pokemons.addAll(results);
+        pokemons.addAll( results );
+        listaPokemon.addAll( results );
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imageView;
         private TextView textView;
@@ -79,6 +85,19 @@ public class AdapterDefault  extends RecyclerView.Adapter<AdapterDefault.ViewHol
         }
 
 
+    }
 
+    public void filtrar(String nomePokemon) {
+        nomePokemon = nomePokemon.toLowerCase();
+        pokemons.clear();
+
+
+        Log.e( "Entrada", "pro paraiso" );
+        for (Pokemon p : listaPokemon) {
+            if (p.getName().toLowerCase().contains( nomePokemon )) {
+                pokemons.add( p );
+            }
+        }
+        notifyDataSetChanged();
     }
 }

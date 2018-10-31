@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
 import com.example.gabrieltiveron.ep_2.model.Treinador;
 import com.example.gabrieltiveron.ep_2.view.CadastroTreinador;
+import com.example.gabrieltiveron.ep_2.view.ListaTreinadores;
 import com.example.gabrieltiveron.ep_2.view.Pokedex;
 
 import java.util.ArrayList;
@@ -28,18 +29,20 @@ public class MainActivity extends AppCompatActivity {
 
         configurarBotaoCadastro();
         configurarBotaoPokedex();
+        configurarBotaoTreinadores();
 
 
-        intent = getIntent();
-        Bundle bundle = intent.getExtras();
+    }
 
-        if(bundle != null){
-            instanciarTreinador(bundle);
-        }
+    private void configurarBotaoTreinadores(){
+        Button buttonListaTreinadores = (Button) findViewById( R.id.btnListaTreinadores );
 
-
-
-
+        buttonListaTreinadores.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent( MainActivity.this, ListaTreinadores.class ) );
+            }
+        } );
     }
 
     private void configurarBotaoPokedex(){

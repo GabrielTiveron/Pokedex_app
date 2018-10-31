@@ -1,7 +1,13 @@
 package com.example.gabrieltiveron.ep_2.view;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,13 +22,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.MainActivity;
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
-import com.example.gabrieltiveron.ep_2.model.PokemonResposta;
 
-import java.io.IOException;
-import java.security.InvalidParameterException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadastro.ViewHolder> {
 
@@ -42,13 +43,13 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
     @NonNull
     @Override
     public AdapterListaCadastro.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from( parent.getContext() ).inflate(R.layout.lista_cadastro_pokemon, parent, false);
+        View view = LayoutInflater.from( parent.getContext() ).inflate(R.layout.adapter_lista_pokemon, parent, false);
         intent = new Intent( this.context, MainActivity.class );
         return new AdapterListaCadastro.ViewHolder( view );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterListaCadastro.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final AdapterListaCadastro.ViewHolder holder, final int position) {
         Pokemon aux = pokemon.get( position );
         holder.textView.setText( aux.getName() );
 
@@ -62,9 +63,27 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
         intent.putExtra( "nome", aux.getName() );
         intent.putExtra( "url", aux.getUrl() );
         intent.putExtra( "nomeTreinador", holder.textView.getText().toString() );
+
+        holder.textView.setOnLongClickListener( new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                popUpRemocao( context, holder.getAdapterPosition() );
+                return true;
+            }
+        } );
+
+        holder.imageView.setOnLongClickListener( new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                popUpZoom(context, holder);
+
+                return true;
+            }
+        } );
     }
 
-    public void Adicionar(ArrayList<Pokemon> pokemonRespostas, String nome){
+    public void adicionar(ArrayList<Pokemon> pokemonRespostas, String nome){
 
         int i = 0;
 
@@ -87,6 +106,11 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
         }
     }
 
+    private void removerItem(int position){
+        pokemon.remove( position );
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return pokemon.size();
@@ -105,13 +129,50 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
         }
     }
 
-    private class InvalidSpeedException extends Exception {
+    private void popUpRemocao(Context context, final int position) {
 
-        public InvalidSpeedException(String message){
-            super(message);
-        }
-
+        AlertDialog.Builder dialog = new AlertDialog.Builder( context );
+        dialog.setTitle( "Remover "  );
+        dialog.setMessage( "Tem certeza que deseja excluir  esse pokemon?" );
+        dialog.setNegativeButton( "Não", null );
+        dialog.setPositiveButton( "Sim",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        removerItem(position);
+                    }
+                } );
+        dialog.create();
+        dialog.show();
     }
 
+    private void popUpZoom(Context context, final ViewHolder holder){
+
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder( context );
+
+        ((ViewGroup)holder.imageView.getParent()).removeView( holder.imageView );
+
+        dialog.setView(holder.imageView);
+        dialog.setNeutralButton( "Sair", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                atualizarImagem( holder, holder.getAdapterPosition() );
+            }
+        } );
+
+        dialog.create();
+        dialog.show();
+    }
+
+    private void atualizarImagem(ViewHolder holder, int position){
+        Glide.with(context)
+                .load("http://pokeapi.co/media/sprites/pokemon/" + pokemon.get( position ).getNumber() + ".png")
+                .centerCrop()
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.imageView);
+        notifyDataSetChanged();
+    }
 
 }

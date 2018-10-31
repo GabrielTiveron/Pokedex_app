@@ -5,13 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputFilter;
-import android.text.Spanned;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.gabrieltiveron.ep_2.R;
+import com.example.gabrieltiveron.ep_2.helper.TreinadoresPreferences;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
 import com.example.gabrieltiveron.ep_2.model.PokemonResposta;
 import com.example.gabrieltiveron.ep_2.model.Treinador;
@@ -21,13 +22,15 @@ import java.util.ArrayList;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class CadastroTreinador extends AppCompatActivity {
 
 
     private Retrofit retrofit;
     private static final String TAG = "POKEDEX";
     private RecyclerView recyclerView;
-    private AdapterListaCadastro adapterDefault;
+    private AdapterListaCadastro adapterListaCadastro;
+    private TreinadoresPreferences sPreferences;
 
 
     @Override
@@ -37,9 +40,9 @@ public class CadastroTreinador extends AppCompatActivity {
 
         recyclerView = new RecyclerView( this );
 
-        recyclerView = findViewById( R.id.recyclerView );
-        adapterDefault = new AdapterListaCadastro(this);
-        recyclerView.setAdapter( adapterDefault );
+        recyclerView         = findViewById( R.id.recyclerView );
+        adapterListaCadastro = new AdapterListaCadastro(this);
+        recyclerView.setAdapter( adapterListaCadastro );
         recyclerView.setHasFixedSize( true );
         GridLayoutManager gridLayoutManager = new GridLayoutManager( this, 1 );
         recyclerView.setLayoutManager( gridLayoutManager );
@@ -50,9 +53,12 @@ public class CadastroTreinador extends AppCompatActivity {
                 .build();
 
 
+
+
         configurarBotaoRetorno();
         configurarBotaoAdicionar();
         configurarBotaoRegistro();
+        configurarImagens();
 
 
     }
@@ -81,7 +87,7 @@ public class CadastroTreinador extends AppCompatActivity {
                 PokemonResposta pokemonResposta = new PokemonResposta();
 
                 if(editText.getText().toString().compareTo( "" ) != 0) {
-                    pokemonResposta.obterDados( retrofit, TAG, adapterDefault, editText.getText().toString().toLowerCase() );
+                    pokemonResposta.obterDados( retrofit, TAG, adapterListaCadastro, editText.getText().toString().toLowerCase() );
                     editText.setText( "" );
                 }
 
@@ -98,15 +104,43 @@ public class CadastroTreinador extends AppCompatActivity {
 
                 EditText editText = findViewById( R.id.nomeEdit );
 
-                ArrayList<Pokemon> pokemon = adapterDefault.getPokemon();
+                ArrayList<Pokemon> pokemon = adapterListaCadastro.getPokemon();
+                sPreferences = new TreinadoresPreferences( getApplicationContext() );
                 Treinador treinador;
 
+
                 if(editText.getText().toString().compareTo( "" ) != 0) {
+
                     treinador = new Treinador( pokemon, editText.getText().toString() );
+
+                    sPreferences.salvarTreinador( treinador );
+
                     finish();
                 }
 
             }
         } );
     }
+
+    private void configurarImagens(){
+        final ImageView ashView = findViewById( R.id.ashView );
+        final ImageView mayView = findViewById( R.id.mayView );
+
+
+        ashView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ashView.setVisibility( View.VISIBLE );
+
+            }
+        } );
+
+        mayView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mayView.setBackgroundColor( 0 );
+            }
+        } );
+    }
+
 }
