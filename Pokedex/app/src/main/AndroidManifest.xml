@@ -22,7 +22,8 @@
         <activity android:name=".view.CadastroTreinador" />
         <activity android:name=".view.DetalhesPokemon" />
         <activity android:name=".view.ListaTreinadores" />
-        <activity android:name=".view.AdapterListaTreinadores"></activity>
+        <activity android:name=".view.AdapterListaTreinadores" />
+        <activity android:name=".view.DetalhesTreinador"></activity>
     </application>
 
 </manifest>

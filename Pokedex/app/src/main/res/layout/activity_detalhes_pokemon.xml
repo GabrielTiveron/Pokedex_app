@@ -6,104 +6,122 @@
     android:layout_height="match_parent"
     tools:context=".view.DetalhesPokemon">
 
-    <android.support.v4.widget.NestedScrollView
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Movimentos:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeView" />
+
+    <ImageView
+        android:id="@+id/trasPadrao"
+        android:layout_width="94dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listaMovimentos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/nomeView"
+        android:layout_width="369dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/carregando"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/branco"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trasPadrao" />
+
+    <ImageView
+        android:id="@+id/frenteShiny"
+        android:layout_width="94dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="136dp"
+        app:layout_constraintEnd_toStartOf="@+id/trasPadrao"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/frentePadrao"
+        android:layout_width="94dp"
+        android:layout_height="88dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/frenteShiny"
+        app:layout_constraintEnd_toStartOf="@+id/trasPadrao"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="1.0" />
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/trasShiny"
+        android:layout_width="94dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/frenteShiny"
-                android:layout_width="94dp"
-                android:layout_height="88dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="128dp"
-                app:layout_constraintEnd_toStartOf="@+id/trasPadrao"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
+        android:text="Tipo:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/trasShiny"
-                android:layout_width="94dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="128dp"
-                android:layout_marginEnd="98dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tipo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-            <ImageView
-                android:id="@+id/frentePadrao"
-                android:layout_width="94dp"
-                android:layout_height="88dp"
-                android:layout_marginStart="98dp"
-                android:layout_marginTop="40dp"
-                app:layout_constraintBottom_toTopOf="@+id/frenteShiny"
-                app:layout_constraintEnd_toStartOf="@+id/trasPadrao"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tipo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipo1" />
 
-            <ImageView
-                android:id="@+id/trasPadrao"
-                android:layout_width="94dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="98dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/nomeView"
-                android:layout_width="369dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="88dp"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/branco"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/trasPadrao" />
-
-            <TextView
-                android:id="@+id/especieView"
-                android:layout_width="369dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="160dp"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/branco"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/trasPadrao" />
-
-            <TextView
-                android:id="@+id/textEspecie"
-                android:layout_width="54dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="260dp"
-                android:text="Especie:"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nomeView" />
-
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v4.widget.NestedScrollView>
+    <Button
+        android:id="@+id/btnRetorno"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_retorno"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

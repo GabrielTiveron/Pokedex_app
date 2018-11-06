@@ -1,5 +1,8 @@
 package com.example.gabrieltiveron.ep_2.view;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,10 +40,7 @@ public class ListaTreinadores extends AppCompatActivity {
         adapterListaTreinadores.adicionar( treinadores );
 
 
-
-
-        Log.e("ASDGTERE", "dvdvsdv");
-
-
     }
+
+
 }

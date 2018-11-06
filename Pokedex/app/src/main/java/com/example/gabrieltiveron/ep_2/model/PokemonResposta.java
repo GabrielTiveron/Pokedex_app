@@ -25,7 +25,7 @@ public class PokemonResposta {
         this.results = results;
     }
 
-    public void obterDados(Retrofit retrofit, final String TAG, final AdapterPokedex adapterPokedex, final ArrayList<Pokemon> pokemon) {
+    public void obterDados(Retrofit retrofit, final String TAG, final AdapterPokedex adapterPokedex) {
         Servico servico = retrofit.create( Servico.class );
 
 
@@ -36,11 +36,8 @@ public class PokemonResposta {
             public void onResponse(Call<PokemonResposta> call, Response<PokemonResposta> response) {
                 if (response.isSuccessful()) {
 
-
                     PokemonResposta pokemonResposta = response.body();
                     adapterPokedex.Adicionar( pokemonResposta.getResults() );
-
-
 
 
                 } else {

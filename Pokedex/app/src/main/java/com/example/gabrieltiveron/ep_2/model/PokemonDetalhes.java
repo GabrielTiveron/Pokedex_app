@@ -1,10 +1,9 @@
 package com.example.gabrieltiveron.ep_2.model;
 
-import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 
 import com.example.gabrieltiveron.ep_2.pokeAPI.Servico;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,15 @@ import retrofit2.Retrofit;
 public class PokemonDetalhes {
     private ArrayList<Tipo> types;
     private String name;
-    private Especie species;
+    private ArrayList<Movimentos> moves;
+
+    public ArrayList<Movimentos> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(ArrayList<Movimentos> moves) {
+        this.moves = moves;
+    }
 
     public String getName() {
         return name;
@@ -24,14 +31,6 @@ public class PokemonDetalhes {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Especie getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(Especie species) {
-        this.species = species;
     }
 
     public ArrayList<Tipo> getTypes() {
@@ -42,33 +41,8 @@ public class PokemonDetalhes {
         this.types = types;
     }
 
-    public class Tipo
-    {
-        private Tipagem type;
 
-        public Tipagem getType() {
-            return type;
-        }
-
-        public void setType(Tipagem type) {
-            this.type = type;
-        }
-    }
-
-    public class Tipagem{
-        private String name;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-
-
-    public void obterDetalhes(Retrofit retrofit, int id){
+    public void obterDetalhes(final Retrofit retrofit, int id){
 
         Servico servico = retrofit.create( Servico.class );
 
@@ -100,7 +74,10 @@ public class PokemonDetalhes {
 
         this.setName( pokemonDetalhes.getName() );
         this.setTypes( pokemonDetalhes.getTypes() );
-        this.setSpecies( pokemonDetalhes.getSpecies() );
+        this.setMoves( pokemonDetalhes.getMoves() );
+        Gson gson = new Gson();
+        String a = gson.toJson( this.getMoves().get( 0 ) );
+        Log.e("Moves", "Nome " + a);
 
     }
 

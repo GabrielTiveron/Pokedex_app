@@ -24,7 +24,6 @@ public class Pokedex extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterPokedex adapterPokedex;
     private SearchView searchView;
-    private ArrayList<Pokemon> pokemons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +50,7 @@ public class Pokedex extends AppCompatActivity {
 
         PokemonResposta pokemonResposta = new PokemonResposta();
 
-        pokemonResposta.obterDados( retrofit, TAG, adapterPokedex, pokemons );
+        pokemonResposta.obterDados( retrofit, TAG, adapterPokedex );
 
         configurarBotaoRetorno();
         searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener() {
@@ -80,14 +79,4 @@ public class Pokedex extends AppCompatActivity {
         } );
     }
 
-//    @Override
-//    public boolean onQueryTextSubmit(String query) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean onQueryTextChange(String newText) {
-//
-//        return false;
-//    }
 }

@@ -1,6 +1,8 @@
 package com.example.gabrieltiveron.ep_2.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,26 +38,47 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         Treinador treinador = treinadores.get( position );
         Log.e("HAKAKA", " nome " + treinador.getNome());
         Log.e("HAKAKA", " size " + treinadores.size());
 
         holder.textView.setText( treinador.getNome() );
 
-
-//        if(treinador.getSexo().compareTo( "MASC" ) == 0){
-//            setImagem(context, holder, R.drawable.ash );
-//        }else{
-//            setImagem(context, holder, R.drawable.may );
-//        }
-
+        holder.textView.setOnLongClickListener( new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                popUpRemocao( context, holder.getAdapterPosition() );
+                return false;
+            }
+        });
 
 
     }
 
     public void adicionar(ArrayList<Treinador> treinador){
         treinadores.addAll(treinador);
+        notifyDataSetChanged();
+    }
+    private void popUpRemocao(Context context, final int position) {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder( context );
+        dialog.setTitle( "Remover "  );
+        dialog.setMessage( "Tem certeza que deseja excluir  esse pokemon?" );
+        dialog.setNegativeButton( "Não", null );
+        dialog.setPositiveButton( "Sim",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        removerItem(position);
+                    }
+                } );
+        dialog.create();
+        dialog.show();
+    }
+
+    private void removerItem(int position){
+        treinadores.remove( position );
         notifyDataSetChanged();
     }
 

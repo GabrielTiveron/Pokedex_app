@@ -12,4 +12,5 @@
     <string name="homem">Homem</string>
     <string name="mulher">Mulher</string>
     <string name="pesquisa">Pesquise aqui</string>
+    <string name="carregando">CARREGANDO...</string>
 </resources>
