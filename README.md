@@ -4,7 +4,7 @@
 
 O projeto é um aplicativo para android baseado numa Pokedex, com telas intuitivas e simples.
 Ao executar o aplicativo o usuário se deparará com três opções: Pokedex, Treinadores e Cadastro.
-![Captura_de_Tela_2018-11-06_às_11.28.55](/uploads/0b2cb094de30bd8599d3c4d20676a3a5/Captura_de_Tela_2018-11-06_às_11.28.55.png)
+![Captura_de_Tela_2018-11-06_às_11.28.55](/uploads/0b2cb094de30bd8599d3c4d20676a3a5/Captura_de_Tela_2018-11-06_às_11.28.55.png = 100x300)
 Ao clicar em Alguma das opções o usuário será automaticamente redirecionado para outra tela. 
 
 ## Pokedex
