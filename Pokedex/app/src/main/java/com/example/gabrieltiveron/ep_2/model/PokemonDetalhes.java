@@ -75,9 +75,6 @@ public class PokemonDetalhes {
         this.setName( pokemonDetalhes.getName() );
         this.setTypes( pokemonDetalhes.getTypes() );
         this.setMoves( pokemonDetalhes.getMoves() );
-        Gson gson = new Gson();
-        String a = gson.toJson( this.getMoves().get( 0 ) );
-        Log.e("Moves", "Nome " + a);
 
     }
 

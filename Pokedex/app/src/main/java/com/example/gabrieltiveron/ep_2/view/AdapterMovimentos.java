@@ -3,7 +3,6 @@ package com.example.gabrieltiveron.ep_2.view;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.model.Movimentos;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -36,18 +34,16 @@ public class AdapterMovimentos extends RecyclerView.Adapter<AdapterMovimentos.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movimentos movimento = movimentos.get( position );
 
-        Gson gson = new Gson();
-
-        String a = gson.toJson( movimentos.get( position ) );
-
-        Log.e("NOME"," = " + a);
-
         try{
-        holder.moveNome.setText( movimentos.get( position ).getMove().getName() );
+        holder.moveNome.setText( movimentos.get( position ).getName() );
+        holder.moveType.setText( movimento.getType().getName() );
+        holder.moveAccuracy.setText( movimento.getAccuracy() );
+        holder.movePower.setText( movimento.getPower() );
+
         } catch(Exception e){
             e.printStackTrace();
         }
-//        holder.moveType.setText( movimento.getType().getName() );
+
 
     }
 
@@ -65,12 +61,16 @@ public class AdapterMovimentos extends RecyclerView.Adapter<AdapterMovimentos.Vi
 
         private TextView moveNome;
         private TextView moveType;
+        private TextView moveAccuracy;
+        private TextView movePower;
 
         public ViewHolder(View itemView) {
             super( itemView );
 
             moveNome = itemView.findViewById( R.id.moveNome );
-            moveType = itemView.findViewById( R.id.moveType );
+            moveType = itemView.findViewById( R.id.moveTipo );
+            moveAccuracy = itemView.findViewById( R.id.accuracyView );
+            movePower = itemView.findViewById( R.id.powerView );
 
         }
     }

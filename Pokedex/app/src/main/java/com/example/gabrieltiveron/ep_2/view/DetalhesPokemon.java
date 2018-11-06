@@ -86,7 +86,6 @@ public class DetalhesPokemon extends AppCompatActivity {
             public void run() {
                 nomePokemon.setText( pokemonDetalhes.getName().toUpperCase() );
                 tipoPokemon1.setText( pokemonDetalhes.getTypes().get( 0 ).getType().getName() );
-                Log.e("Size", " = " + pokemonDetalhes.getMoves().size());
 
 
                 if(pokemonDetalhes.getTypes().size() > 1){
@@ -94,25 +93,21 @@ public class DetalhesPokemon extends AppCompatActivity {
                 }
 
                 for(Movimentos m : pokemonDetalhes.getMoves()) {
-                    Log.e("ID", " = " + m.getId());
                     m.obterMovimentos( retrofit, m.getId() );
                     movimentosArrayList.add( m );
+                    Log.e("Acc1", "= " + m.getAccuracy());
                 }
 
 
 
             }
-        } , 5000);
+        } , 7000);
         new Handler().postDelayed( new Runnable() {
             @Override
             public void run() {
-                Gson gson = new Gson();
-
-                String a = gson.toJson( movimentosArrayList.get( 0 ) );
-                Log.e("GSON", " objeto: " + a);
                 adapterMovimentos.adicionarMov( movimentosArrayList );
             }
-        }, 13000);
+        }, 10000);
 
         configurarBotao();
 

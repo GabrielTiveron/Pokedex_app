@@ -3,6 +3,7 @@ package com.example.gabrieltiveron.ep_2.model;
 import android.util.Log;
 
 import com.example.gabrieltiveron.ep_2.pokeAPI.Servico;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,42 @@ public class Movimentos {
     private Movimento move;
     private int id;
     private Tipo.Tipagem type;
+    private String name;
+    private int accuracy;
+    private int pp;
+    private int power;
+
+    public String getAccuracy() {
+        return Integer.toString(accuracy);
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public String getPp() {
+        return Integer.toString( pp );
+    }
+
+    public void setPp(int pp) {
+        this.pp = pp;
+    }
+
+    public String getPower() {
+        return Integer.toString( power );
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         String[] urlPartida = move.getUrl().split("/");
@@ -38,17 +75,7 @@ public class Movimentos {
     }
 
     public class Movimento {
-        private String name;
         private String url;
-
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
 
         public String getUrl() {
             return url;
@@ -87,8 +114,11 @@ public class Movimentos {
 
     }
     private void setAll(Movimentos mov){
-        this.setMove( mov.getMove() );
+        this.setName( mov.getName() );
         this.setType( mov.getType() );
+        this.setAccuracy( Integer.parseInt(mov.getAccuracy()) );
+        this.setPower( Integer.parseInt(mov.getPower()) );
+        this.setPp( Integer.parseInt( mov.getPp() ) );
     }
 
 }
