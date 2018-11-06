@@ -2,9 +2,9 @@ package com.example.gabrieltiveron.ep_2.model;
 
 import android.util.Log;
 
-import com.example.gabrieltiveron.ep_2.view.AdapterPokedex;
+import com.example.gabrieltiveron.ep_2.controller.AdapterPokedex;
 import com.example.gabrieltiveron.ep_2.pokeAPI.Servico;
-import com.example.gabrieltiveron.ep_2.view.AdapterListaCadastro;
+import com.example.gabrieltiveron.ep_2.controller.AdapterListaCadastro;
 
 import java.util.ArrayList;
 

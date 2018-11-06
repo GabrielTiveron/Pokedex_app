@@ -9,10 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.gabrieltiveron.ep_2.R;
-import com.example.gabrieltiveron.ep_2.model.Pokemon;
+import com.example.gabrieltiveron.ep_2.controller.AdapterPokedex;
 import com.example.gabrieltiveron.ep_2.model.PokemonResposta;
-
-import java.util.ArrayList;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

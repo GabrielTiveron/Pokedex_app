@@ -77,22 +77,24 @@ public class TreinadoresPreferences {
     }
 
     public Treinador getTreinador(String nome) {
-        Treinador treinador = new Treinador(  );
         ArrayList<Treinador> treinadorArrayList;
 
-        try {
-            treinadorArrayList = new ArrayList<>( Arrays.asList( this.getTreinadores() ) );
+        if(this.getTreinadores(  ) != null) {
+            try {
+                treinadorArrayList = new ArrayList<>( Arrays.asList( this.getTreinadores() ) );
 
-            for (Treinador t : treinadorArrayList){
-                if(t.getNome().compareTo( nome ) == 0){
-                    return t;
+                for (Treinador t : treinadorArrayList) {
+                    if (t.getNome().compareTo( nome ) == 0) {
+                        return t;
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+
             }
-        }catch(Exception e) {
-            e.printStackTrace();
         }
 
-        return treinador;
+        return null;
     }
 
 

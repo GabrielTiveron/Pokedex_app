@@ -1,17 +1,14 @@
 package com.example.gabrieltiveron.ep_2.view;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.gabrieltiveron.ep_2.R;
+import com.example.gabrieltiveron.ep_2.controller.AdapterListaTreinadores;
 import com.example.gabrieltiveron.ep_2.helper.TreinadoresPreferences;
 import com.example.gabrieltiveron.ep_2.model.Treinador;
 
@@ -31,15 +28,18 @@ public class ListaTreinadores extends AppCompatActivity {
         adapterListaTreinadores = new AdapterListaTreinadores( this );
         sPreferences = new TreinadoresPreferences( getApplicationContext() );
 
-        ArrayList<Treinador> treinadores = new ArrayList<>( Arrays.asList(sPreferences.getTreinadores()) );
+        if(sPreferences.getTreinadores(  ) != null) {
+
+            ArrayList<Treinador> treinadores = new ArrayList<>( Arrays.asList( sPreferences.getTreinadores() ) );
 
 
-        recyclerView = findViewById( R.id.listaTreinador );
-        recyclerView.setLayoutManager( new LinearLayoutManager( getApplicationContext() ) );
-        recyclerView.setAdapter( adapterListaTreinadores );
+            recyclerView = findViewById( R.id.listaTreinador );
+            recyclerView.setLayoutManager( new LinearLayoutManager( getApplicationContext() ) );
+            recyclerView.setAdapter( adapterListaTreinadores );
 
 
-        adapterListaTreinadores.adicionar( treinadores );
+            adapterListaTreinadores.adicionar( treinadores );
+        }
 
         configurarBotaoRetorno();
 

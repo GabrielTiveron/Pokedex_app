@@ -3,7 +3,6 @@ package com.example.gabrieltiveron.ep_2.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,9 +16,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.R;
+import com.example.gabrieltiveron.ep_2.controller.AdapterMovimentos;
 import com.example.gabrieltiveron.ep_2.model.Movimentos;
 import com.example.gabrieltiveron.ep_2.model.PokemonDetalhes;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 

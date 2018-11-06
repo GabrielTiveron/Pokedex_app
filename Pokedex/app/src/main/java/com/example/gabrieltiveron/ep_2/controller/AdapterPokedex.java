@@ -1,4 +1,4 @@
-package com.example.gabrieltiveron.ep_2.view;
+package com.example.gabrieltiveron.ep_2.controller;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +15,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
+import com.example.gabrieltiveron.ep_2.view.DetalhesPokemon;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHolder> {
 

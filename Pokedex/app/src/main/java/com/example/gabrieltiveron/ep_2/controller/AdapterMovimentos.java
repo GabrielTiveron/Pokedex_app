@@ -1,4 +1,4 @@
-package com.example.gabrieltiveron.ep_2.view;
+package com.example.gabrieltiveron.ep_2.controller;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

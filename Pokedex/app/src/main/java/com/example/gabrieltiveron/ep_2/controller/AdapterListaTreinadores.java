@@ -1,4 +1,4 @@
-package com.example.gabrieltiveron.ep_2.view;
+package com.example.gabrieltiveron.ep_2.controller;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.helper.TreinadoresPreferences;
 import com.example.gabrieltiveron.ep_2.model.Treinador;
+import com.example.gabrieltiveron.ep_2.view.DetalhesTreinador;
 
 import java.util.ArrayList;
 
@@ -41,34 +41,36 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final Treinador treinador = treinadores.get( position );
         sPreferences = new TreinadoresPreferences( context );
 
-        holder.textView.setText( treinador.getNome() );
+        if (treinador.getSexo() != null && treinador.getNome() != null ) {
+            holder.textView.setText( treinador.getNome() );
 
-        if(treinador.getSexo().compareTo( "HOMEM" ) == 0) {
-            holder.imageView.setImageResource( R.drawable.ash_perfil );
-        } else {
-            holder.imageView.setImageResource( R.drawable.may_perfil );
+            if (treinador.getSexo().compareTo( "HOMEM" ) == 0) {
+                holder.imageView.setImageResource( R.drawable.ash_perfil );
+            } else {
+                holder.imageView.setImageResource( R.drawable.may_perfil );
+            }
+
+            holder.textView.setOnLongClickListener( new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    popUpRemocao( context, holder.getAdapterPosition() );
+                    return false;
+                }
+            } );
+
+            holder.textView.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent( context, DetalhesTreinador.class );
+                    intent.putExtra( "nomeTreinador", treinadores.get( position ).getNome() );
+                    context.startActivity( intent );
+                }
+            } );
         }
-
-        holder.textView.setOnLongClickListener( new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                popUpRemocao( context, holder.getAdapterPosition() );
-                return false;
-            }
-        });
-
-        holder.textView.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetalhesTreinador.class);
-                intent.putExtra( "nome", treinador.getNome() );
-                context.startActivity( intent );
-            }
-        } );
 
 
     }
@@ -81,7 +83,7 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
 
         AlertDialog.Builder dialog = new AlertDialog.Builder( context );
         dialog.setTitle( "Remover "  );
-        dialog.setMessage( "Tem certeza que deseja excluir  esse pokemon?" );
+        dialog.setMessage( "Tem certeza que deseja excluir  esse treinador?" );
         dialog.setNegativeButton( "Não", null );
         dialog.setPositiveButton( "Sim",
                 new DialogInterface.OnClickListener() {
