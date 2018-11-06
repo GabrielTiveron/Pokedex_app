@@ -39,6 +39,7 @@ public class AdapterMovimentos extends RecyclerView.Adapter<AdapterMovimentos.Vi
         holder.moveType.setText( movimento.getType().getName() );
         holder.moveAccuracy.setText( movimento.getAccuracy() );
         holder.movePower.setText( movimento.getPower() );
+        holder.movePp.setText( movimento.getPp() );
 
         } catch(Exception e){
             e.printStackTrace();
@@ -63,14 +64,16 @@ public class AdapterMovimentos extends RecyclerView.Adapter<AdapterMovimentos.Vi
         private TextView moveType;
         private TextView moveAccuracy;
         private TextView movePower;
+        private TextView movePp;
 
         public ViewHolder(View itemView) {
             super( itemView );
 
-            moveNome = itemView.findViewById( R.id.moveNome );
-            moveType = itemView.findViewById( R.id.moveTipo );
+            moveNome     = itemView.findViewById( R.id.moveNome );
+            moveType     = itemView.findViewById( R.id.moveTipo );
             moveAccuracy = itemView.findViewById( R.id.accuracyView );
-            movePower = itemView.findViewById( R.id.powerView );
+            movePower    = itemView.findViewById( R.id.powerView );
+            movePp       = itemView.findViewById( R.id.movePP );
 
         }
     }

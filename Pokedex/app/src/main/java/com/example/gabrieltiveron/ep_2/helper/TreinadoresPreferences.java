@@ -92,9 +92,6 @@ public class TreinadoresPreferences {
             e.printStackTrace();
         }
 
-
-
-
         return treinador;
     }
 
