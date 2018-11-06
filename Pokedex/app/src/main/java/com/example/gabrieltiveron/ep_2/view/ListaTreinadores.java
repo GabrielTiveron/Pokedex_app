@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.helper.TreinadoresPreferences;
@@ -39,7 +41,19 @@ public class ListaTreinadores extends AppCompatActivity {
 
         adapterListaTreinadores.adicionar( treinadores );
 
+        configurarBotaoRetorno();
 
+    }
+
+    private void configurarBotaoRetorno() {
+        Button btnRetorno = (Button) findViewById( R.id.btnRetorno );
+
+        btnRetorno.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        } );
     }
 
 

@@ -32,15 +32,13 @@ public class CadastroTreinador extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterListaCadastro adapterListaCadastro;
     private TreinadoresPreferences sPreferences;
-    private Treinador treinador;
+    private String sexo;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_cadastro_treinador );
-
-        treinador = new Treinador(  );
 
         recyclerView = new RecyclerView( this );
 
@@ -106,18 +104,23 @@ public class CadastroTreinador extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Treinador treinador = new Treinador();
+
                 EditText editText = findViewById( R.id.nomeEdit );
 
                 ArrayList<Pokemon> pokemon = adapterListaCadastro.getPokemon();
                 sPreferences = new TreinadoresPreferences( getApplicationContext() );
 
 
-                if(adapterListaCadastro.getPokemon().size() == 0 || editText.getText().toString().compareTo( "" ) == 0 || treinador.getSexo() == null) {
+                if(adapterListaCadastro.getPokemon().size() == 0 || editText.getText().toString().compareTo( "" ) == 0 || sexo == null) {
                     Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
                 }
                 else {
 
                     treinador = new Treinador( pokemon, editText.getText().toString() );
+
+                    treinador.setSexo( sexo );
+
 
                     sPreferences.salvarTreinador( treinador );
 
@@ -140,7 +143,7 @@ public class CadastroTreinador extends AppCompatActivity {
             public void onClick(View v) {
                 ashView.setBackgroundColor( getResources().getColor( R.color.branco ) );
                 mayView.setBackgroundColor( getResources().getColor( R.color.transparent ) );
-                treinador.setSexo( "HOMEM" );
+                sexo = "HOMEM";
 
             }
         } );
@@ -150,7 +153,7 @@ public class CadastroTreinador extends AppCompatActivity {
             public void onClick(View v) {
                 mayView.setBackgroundColor( getResources().getColor( R.color.branco ) );
                 ashView.setBackgroundColor( getResources().getColor( R.color.transparent ) );
-                treinador.setSexo( "MULHER" );
+                sexo = "MULHER";
             }
         } );
     }

@@ -37,7 +37,6 @@ public class TreinadoresPreferences {
             Gson gson = new Gson();
             treinadores.add( treinador );
             String json = gson.toJson( treinadores );
-            Log.e("JSON", " stringJson " + json);
             editor.putString( KEY_LISTA, json );
             editor.apply();
 
@@ -49,7 +48,7 @@ public class TreinadoresPreferences {
             return false;
         }
     }
-    public boolean removerTreinador(Treinador treinador){
+    public void removerTreinador(Treinador treinador){
         try {
             treinadores = new ArrayList<>();
 
@@ -59,15 +58,13 @@ public class TreinadoresPreferences {
                 String json = gson.toJson( treinadores );
                 Log.e( "JSON", " stringJson " + json );
                 editor.putString( KEY_LISTA, json );
-                editor.apply();
+                editor.commit();
+                editor.clear();
 
-
-            return true;
         }
         catch (Exception e){
             e.printStackTrace();
 
-            return false;
         }
     }
 
@@ -77,6 +74,28 @@ public class TreinadoresPreferences {
 
 
         return gson.fromJson( json, Treinador[].class );
+    }
+
+    public Treinador getTreinador(String nome) {
+        Treinador treinador = new Treinador(  );
+        ArrayList<Treinador> treinadorArrayList;
+
+        try {
+            treinadorArrayList = new ArrayList<>( Arrays.asList( this.getTreinadores() ) );
+
+            for (Treinador t : treinadorArrayList){
+                if(t.getNome().compareTo( nome ) == 0){
+                    return t;
+                }
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        return treinador;
     }
 
 

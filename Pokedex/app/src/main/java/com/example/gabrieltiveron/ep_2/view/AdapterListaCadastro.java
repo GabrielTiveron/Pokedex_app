@@ -101,6 +101,11 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
         }
     }
 
+    public void adicionarLista(ArrayList<Pokemon> pokemons) {
+        pokemon.addAll( pokemons );
+        notifyDataSetChanged();
+    }
+
     private void removerItem(int position){
         pokemon.remove( position );
         notifyDataSetChanged();

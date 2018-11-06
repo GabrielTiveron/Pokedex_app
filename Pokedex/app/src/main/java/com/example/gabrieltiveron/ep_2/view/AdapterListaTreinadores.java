@@ -3,6 +3,7 @@ package com.example.gabrieltiveron.ep_2.view;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,17 +42,16 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        Treinador treinador = treinadores.get( position );
-        Log.e("HAKAKA", " nome " + treinador.getNome());
-        Log.e("HAKAKA", " size " + treinadores.size());
+        final Treinador treinador = treinadores.get( position );
+        sPreferences = new TreinadoresPreferences( context );
 
         holder.textView.setText( treinador.getNome() );
 
-//        if(treinador.getSexo().compareTo( "HOMEM" ) == 0) {
-//            holder.imageView.setImageResource( R.drawable.ash_perfil );
-//        } else {
-//            holder.imageView.setImageResource( R.drawable.may_perfil );
-//        }
+        if(treinador.getSexo().compareTo( "HOMEM" ) == 0) {
+            holder.imageView.setImageResource( R.drawable.ash_perfil );
+        } else {
+            holder.imageView.setImageResource( R.drawable.may_perfil );
+        }
 
         holder.textView.setOnLongClickListener( new View.OnLongClickListener() {
             @Override
@@ -60,6 +60,15 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
                 return false;
             }
         });
+
+        holder.textView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetalhesTreinador.class);
+                intent.putExtra( "nome", treinador.getNome() );
+                context.startActivity( intent );
+            }
+        } );
 
 
     }
