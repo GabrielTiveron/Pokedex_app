@@ -85,16 +85,17 @@ public class DetalhesPokemon extends AppCompatActivity {
             public void run() {
                 nomePokemon.setText( pokemonDetalhes.getName().toUpperCase() );
                 tipoPokemon1.setText( pokemonDetalhes.getTypes().get( 0 ).getType().getName() );
+                definirBackground(pokemonDetalhes.getTypes().get( 0 ).getType().getName(), true);
 
 
                 if(pokemonDetalhes.getTypes().size() > 1){
                     tipoPokemon2.setText( pokemonDetalhes.getTypes().get( 1 ).getType().getName() );
+                    definirBackground( pokemonDetalhes.getTypes().get( 1 ).getType().getName(), false );
                 }
 
                 for(Movimentos m : pokemonDetalhes.getMoves()) {
                     m.obterMovimentos( retrofit, m.getId() );
                     movimentosArrayList.add( m );
-                    Log.e("Acc1", "= " + m.getAccuracy());
                 }
 
 
@@ -105,6 +106,7 @@ public class DetalhesPokemon extends AppCompatActivity {
             @Override
             public void run() {
                 adapterMovimentos.adicionarMov( movimentosArrayList );
+
             }
         }, 10000);
 
@@ -131,5 +133,138 @@ public class DetalhesPokemon extends AppCompatActivity {
                 finish();
             }
         } );
+    }
+
+    private void definirBackground(String tipo, boolean diferencia){
+
+        if(diferencia) {
+            switch (tipo) {
+                case "normal":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_normal));
+                    break;
+                case "fighting":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_fighting));
+                    break;
+                case "flying":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_flying));
+                    break;
+                case "poison":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_poison));
+                    break;
+                case "ground":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_ground));
+                    break;
+                case "rock":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_rock));
+                    break;
+                case "bug":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_bug));
+                    break;
+                case "ghost":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_ghost));
+                    break;
+                case "steel":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_steel));
+                    break;
+                case "fire":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_fire));
+                    break;
+                case "water":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_water));
+                    break;
+                case "grass":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_grass));
+                    break;
+                case "electric":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_eletric));
+                    break;
+                case "psychic":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_psychic));
+                    break;
+                case "ice":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_ice));
+                    break;
+                case "dragon":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_dragon));
+                    break;
+                case "dark":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_dark));
+                    break;
+                case "fairy":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_fairy));
+                    break;
+                case "shadow":
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_shadow));
+                    break;
+                default:
+                    tipoPokemon1.setBackground(getResources().getDrawable(R.drawable.tipo_normal));
+                    break;
+
+            }
+        } else {
+            switch (tipo) {
+                case "normal":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_normal));
+                    break;
+                case "fighting":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_fighting));
+                    break;
+                case "flying":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_flying));
+                    break;
+                case "poison":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_poison));
+                    break;
+                case "ground":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_ground));
+                    break;
+                case "rock":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_rock));
+                    break;
+                case "bug":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_bug));
+                    break;
+                case "ghost":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_ghost));
+                    break;
+                case "steel":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_steel));
+                    break;
+                case "fire":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_fire));
+                    break;
+                case "water":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_water));
+                    break;
+                case "grass":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_grass));
+                    break;
+                case "electric":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_eletric));
+                    break;
+                case "psychic":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_psychic));
+                    break;
+                case "ice":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_ice));
+                    break;
+                case "dragon":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_dragon));
+                    break;
+                case "dark":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_dark));
+                    break;
+                case "fairy":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_fairy));
+                    break;
+                case "shadow":
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_shadow));
+                    break;
+                default:
+                    tipoPokemon2.setBackground(getResources().getDrawable(R.drawable.tipo_normal));
+                    break;
+
+            }
+        }
     }
 }

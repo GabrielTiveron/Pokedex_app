@@ -62,6 +62,8 @@ public class DetalhesTreinador extends AppCompatActivity {
                     recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
 
                     listaPokemon.adicionarLista( t.getPokemons() );
+
+
                 }
             }
 

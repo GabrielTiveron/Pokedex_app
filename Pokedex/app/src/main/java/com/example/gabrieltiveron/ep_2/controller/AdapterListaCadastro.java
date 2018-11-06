@@ -12,11 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
+import com.example.gabrieltiveron.ep_2.model.PokemonDetalhes;
+import com.example.gabrieltiveron.ep_2.view.DetalhesPokemon;
 import com.example.gabrieltiveron.ep_2.view.MainActivity;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
     private ArrayList<Pokemon> pokemon;
     private Context context;
     private Intent intent;
+    private Intent intent1;
 
     public ArrayList<Pokemon> getPokemon() {
         return pokemon;
@@ -41,6 +45,8 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
     public AdapterListaCadastro.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from( parent.getContext() ).inflate(R.layout.adapter_lista_pokemon, parent, false);
         intent = new Intent( this.context, MainActivity.class );
+        intent1 = new Intent( this.context, DetalhesPokemon.class );
+
         return new AdapterListaCadastro.ViewHolder( view );
     }
 
@@ -55,6 +61,7 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.imageView);
+
         intent.putExtra( "numero", aux.getNumber() );
         intent.putExtra( "nome", aux.getName() );
         intent.putExtra( "url", aux.getUrl() );
@@ -68,13 +75,11 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
             }
         } );
 
-        holder.imageView.setOnLongClickListener( new View.OnLongClickListener() {
+        holder.textView.setOnClickListener( new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
-
-                popUpZoom(context, holder);
-
-                return true;
+            public void onClick(View v) {
+                intent1.putExtra( "id", pokemon.get( position ).getNumber() );
+                context.startActivity( intent1 );
             }
         } );
     }
@@ -98,7 +103,10 @@ public class AdapterListaCadastro extends RecyclerView.Adapter<AdapterListaCadas
 
 
             i++;
-            if(i >= 950)break;
+            if(i >= 950) {
+                Toast.makeText( context, "Pokemon não encontrado", Toast.LENGTH_SHORT ).show();
+                break;
+            }
         }
     }
 

@@ -29,7 +29,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listaMovimentos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="277dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,25 +98,25 @@
 
     <TextView
         android:id="@+id/tipo1"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        android:textAllCaps="true"
-        android:textColor="@color/branco"/>
+        android:textColor="@color/branco"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/tipo2"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tipo1"
-        android:textAllCaps="true"
-        android:textColor="@color/branco"/>
+        android:textColor="@color/branco"
+        android:textAlignment="center"/>
 
     <Button
         android:id="@+id/btnRetorno"
