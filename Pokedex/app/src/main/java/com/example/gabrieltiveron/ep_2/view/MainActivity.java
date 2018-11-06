@@ -1,4 +1,4 @@
-package com.example.gabrieltiveron.ep_2;
+package com.example.gabrieltiveron.ep_2.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
 import com.example.gabrieltiveron.ep_2.model.Treinador;
-import com.example.gabrieltiveron.ep_2.view.CadastroTreinador;
-import com.example.gabrieltiveron.ep_2.view.ListaTreinadores;
-import com.example.gabrieltiveron.ep_2.view.Pokedex;
 
 import java.util.ArrayList;
 

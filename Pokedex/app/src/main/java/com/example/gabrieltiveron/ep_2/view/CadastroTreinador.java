@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.gabrieltiveron.ep_2.R;
 import com.example.gabrieltiveron.ep_2.helper.TreinadoresPreferences;
@@ -31,12 +32,15 @@ public class CadastroTreinador extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterListaCadastro adapterListaCadastro;
     private TreinadoresPreferences sPreferences;
+    private Treinador treinador;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_cadastro_treinador );
+
+        treinador = new Treinador(  );
 
         recyclerView = new RecyclerView( this );
 
@@ -106,14 +110,18 @@ public class CadastroTreinador extends AppCompatActivity {
 
                 ArrayList<Pokemon> pokemon = adapterListaCadastro.getPokemon();
                 sPreferences = new TreinadoresPreferences( getApplicationContext() );
-                Treinador treinador;
 
 
-                if(editText.getText().toString().compareTo( "" ) != 0) {
+                if(adapterListaCadastro.getPokemon().size() == 0 || editText.getText().toString().compareTo( "" ) == 0 || treinador.getSexo() == null) {
+                    Toast.makeText(getApplicationContext(), "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
                     treinador = new Treinador( pokemon, editText.getText().toString() );
 
                     sPreferences.salvarTreinador( treinador );
+
+                    Toast.makeText( getApplicationContext(), "Treinador registrado com sucesso!", Toast.LENGTH_SHORT ).show();
 
                     finish();
                 }
@@ -130,7 +138,9 @@ public class CadastroTreinador extends AppCompatActivity {
         ashView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ashView.setVisibility( View.VISIBLE );
+                ashView.setBackgroundColor( getResources().getColor( R.color.branco ) );
+                mayView.setBackgroundColor( getResources().getColor( R.color.transparent ) );
+                treinador.setSexo( "HOMEM" );
 
             }
         } );
@@ -138,7 +148,9 @@ public class CadastroTreinador extends AppCompatActivity {
         mayView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mayView.setBackgroundColor( 0 );
+                mayView.setBackgroundColor( getResources().getColor( R.color.branco ) );
+                ashView.setBackgroundColor( getResources().getColor( R.color.transparent ) );
+                treinador.setSexo( "MULHER" );
             }
         } );
     }

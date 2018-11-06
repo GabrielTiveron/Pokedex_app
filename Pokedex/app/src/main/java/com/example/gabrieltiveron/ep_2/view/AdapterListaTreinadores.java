@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.R;
+import com.example.gabrieltiveron.ep_2.helper.TreinadoresPreferences;
 import com.example.gabrieltiveron.ep_2.model.Treinador;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
 
     private ArrayList<Treinador> treinadores;
     private Context context;
+    private TreinadoresPreferences sPreferences;
 
     public AdapterListaTreinadores(Context context) {
         treinadores = new ArrayList<>(  );
@@ -44,6 +46,12 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
         Log.e("HAKAKA", " size " + treinadores.size());
 
         holder.textView.setText( treinador.getNome() );
+
+//        if(treinador.getSexo().compareTo( "HOMEM" ) == 0) {
+//            holder.imageView.setImageResource( R.drawable.ash_perfil );
+//        } else {
+//            holder.imageView.setImageResource( R.drawable.may_perfil );
+//        }
 
         holder.textView.setOnLongClickListener( new View.OnLongClickListener() {
             @Override
@@ -70,15 +78,16 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        removerItem(position);
+                        removerItem(treinadores.get( position ));
                     }
                 } );
         dialog.create();
         dialog.show();
     }
 
-    private void removerItem(int position){
-        treinadores.remove( position );
+    private void removerItem(Treinador treinador){
+        sPreferences.removerTreinador( treinador );
+        treinadores.remove( treinador );
         notifyDataSetChanged();
     }
 

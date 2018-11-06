@@ -49,6 +49,27 @@ public class TreinadoresPreferences {
             return false;
         }
     }
+    public boolean removerTreinador(Treinador treinador){
+        try {
+            treinadores = new ArrayList<>();
+
+            editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+                treinadores.remove( treinador );
+                String json = gson.toJson( treinadores );
+                Log.e( "JSON", " stringJson " + json );
+                editor.putString( KEY_LISTA, json );
+                editor.apply();
+
+
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+            return false;
+        }
+    }
 
     public Treinador[] getTreinadores(){
         Gson gson = new Gson();

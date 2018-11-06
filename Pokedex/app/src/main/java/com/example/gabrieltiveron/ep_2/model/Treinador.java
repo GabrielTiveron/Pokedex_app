@@ -16,6 +16,8 @@ public class Treinador implements Serializable {
         this.sexo = sexo;
     }
 
+    public Treinador(){}
+
     public Treinador(ArrayList<Pokemon> pokemons, String nome) {
         this.pokemons = pokemons;
         this.nome = nome;
