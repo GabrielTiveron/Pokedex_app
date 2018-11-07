@@ -1,5 +1,6 @@
 package com.example.gabrieltiveron.ep_2.model;
 
+import android.os.Handler;
 import android.util.Log;
 
 import com.example.gabrieltiveron.ep_2.controller.AdapterPokedex;
@@ -25,7 +26,7 @@ public class PokemonResposta {
         this.results = results;
     }
 
-    public void obterDados(Retrofit retrofit, final String TAG, final AdapterPokedex adapterPokedex) {
+    public void obterDados(Retrofit retrofit, final String TAG, final AdapterPokedex adapterPokedex, final PokemonResposta pokemonRespostas) {
         Servico servico = retrofit.create( Servico.class );
 
 
@@ -36,8 +37,9 @@ public class PokemonResposta {
             public void onResponse(Call<PokemonResposta> call, Response<PokemonResposta> response) {
                 if (response.isSuccessful()) {
 
-                    PokemonResposta pokemonResposta = response.body();
+                    final PokemonResposta pokemonResposta = response.body();
                     adapterPokedex.Adicionar( pokemonResposta.getResults() );
+                    pokemonRespostas.setResults( pokemonResposta.getResults() );
 
 
                 } else {

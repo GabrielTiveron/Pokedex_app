@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EP_2</string>
+    <string name="app_name">Pokedex</string>
     <string name="cadastro">CADASTRAR</string>
     <string name="pokedex">POKEDEX</string>
     <string name="retorno">RETORNAR</string>

@@ -16,6 +16,15 @@ public class PokemonDetalhes {
     private ArrayList<Tipo> types;
     private String name;
     private ArrayList<Movimentos> moves;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public ArrayList<Movimentos> getMoves() {
         return moves;
@@ -46,7 +55,7 @@ public class PokemonDetalhes {
 
         Servico servico = retrofit.create( Servico.class );
 
-        final Call<PokemonDetalhes> pokemonDetalhesCall = servico.obterDetalhes( id );
+        Call<PokemonDetalhes> pokemonDetalhesCall = servico.obterDetalhes( id );
 
         pokemonDetalhesCall.enqueue( new Callback<PokemonDetalhes>() {
             @Override
@@ -54,6 +63,33 @@ public class PokemonDetalhes {
                 if(response.isSuccessful()){
                     PokemonDetalhes aux = response.body();
                     setAll(aux);
+
+
+                }else{
+                    Log.e("OBTER DETALHES", "onResponse");
+                    response.raw().body().close();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PokemonDetalhes> call, Throwable t) {
+                Log.e("OBTER DETALHES", "onFailure" + t.getMessage());
+            }
+        } );
+
+    }public void obterDetalhes(final Retrofit retrofit, int id, final ArrayList<PokemonDetalhes> pokemonDetalhes){
+
+        Servico servico = retrofit.create( Servico.class );
+
+        Call<PokemonDetalhes> pokemonDetalhesCall = servico.obterDetalhes( id );
+
+        pokemonDetalhesCall.enqueue( new Callback<PokemonDetalhes>() {
+            @Override
+            public void onResponse(Call<PokemonDetalhes> call, Response<PokemonDetalhes> response) {
+                if(response.isSuccessful()){
+                    PokemonDetalhes aux = response.body();
+                    setAll(aux);
+                    pokemonDetalhes.add(aux);
 
 
                 }else{

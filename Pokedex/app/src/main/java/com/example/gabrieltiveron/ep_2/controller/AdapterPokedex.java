@@ -14,10 +14,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gabrieltiveron.ep_2.R;
+import com.example.gabrieltiveron.ep_2.model.Movimentos;
 import com.example.gabrieltiveron.ep_2.model.Pokemon;
+import com.example.gabrieltiveron.ep_2.model.PokemonDetalhes;
 import com.example.gabrieltiveron.ep_2.view.DetalhesPokemon;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.logging.Handler;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHolder> {
 
@@ -25,6 +34,7 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
     private ArrayList<Pokemon> listaPokemon;
     private Context context;
     private Intent intent;
+    private ArrayList<PokemonDetalhes> pokemonDetalhes;
 
 
     public AdapterPokedex(Context context) {
@@ -60,6 +70,8 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
                 .crossFade()
                 .diskCacheStrategy( DiskCacheStrategy.ALL )
                 .into( holder.imageView );
+
+
     }
 
     @Override
@@ -68,10 +80,34 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
     }
 
     public void Adicionar(ArrayList<Pokemon> results) {
+        pokemons = new ArrayList<>();
         pokemons.addAll( results );
         listaPokemon.addAll( results );
         notifyDataSetChanged();
     }
+
+    public void AdicionarDetalhes(ArrayList<PokemonDetalhes> pDetalhes) {
+        ArrayList<Pokemon> p = new ArrayList<>();
+
+
+        for(PokemonDetalhes pd : pDetalhes) {
+            Pokemon pk = new Pokemon();
+            pk.setNumber( pd.getId() );
+            pk.setName( pd.getName() );
+            pk.setUrl( "/"+pd.getId()+"/" );
+            p.add(pk);
+        }
+        pokemons = new ArrayList<>(  );
+        Collections.sort( p, new Comparator<Pokemon>() {
+            @Override
+            public int compare(Pokemon o1, Pokemon o2) {
+                return o1.getNumber() - o2.getNumber();
+            }
+        } );
+        pokemons.addAll( p );
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -91,8 +127,6 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
         nomePokemon = nomePokemon.toLowerCase();
         pokemons.clear();
 
-
-        Log.e( "Entrada", "pro paraiso" );
         for (Pokemon p : listaPokemon) {
             if (p.getName().toLowerCase().contains( nomePokemon )) {
                 pokemons.add( p );
@@ -100,4 +134,31 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
         }
         notifyDataSetChanged();
     }
+
+
+    public void AdicionarTipo(final String tipo, ArrayList<PokemonDetalhes> pDetalhes) {
+        ArrayList<PokemonDetalhes> pokemonDetalhes = new ArrayList<>(  );
+
+        if(tipo.equals( "padrão" )){
+            this.Adicionar( listaPokemon );
+        }else {
+
+            for (PokemonDetalhes pd : pDetalhes) {
+                // Log.e("pd", "= " + pd.getTypes().get( 0 ).getType().getName());
+
+                if (pd.getTypes().get( 0 ).getType().getName().equals( tipo )) {
+                    pokemonDetalhes.add( pd );
+                }
+                if (pd.getTypes().size() == 2) {
+                    if (pd.getTypes().get( 1 ).getType().getName().equals( tipo )) {
+                        pokemonDetalhes.add( pd );
+                    }
+                }
+            }
+
+            this.AdicionarDetalhes( pokemonDetalhes );
+        }
+
+    }
+
 }

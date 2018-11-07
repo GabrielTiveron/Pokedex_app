@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Padrão"
+        android:id="@+id/padrao" />
+    <item android:title="Normal"
+        android:id="@+id/normal"/>
+    <item android:title="Fighting"
+        android:id="@+id/fighting"/>
+    <item android:title="Flying"
+        android:id="@+id/flying"/>
+    <item android:title="Grass"
+        android:id="@+id/grass"/>
+    <item android:title="Water"
+        android:id="@+id/water"/>
+    <item android:title="Fire"
+        android:id="@+id/fire"/>
+    <item android:title="Shadow"
+        android:id="@+id/shadow" />
+    <item android:title="Dark"
+        android:id="@+id/dark"/>
+    <item android:title="Dragon"
+        android:id="@+id/dragon"/>
+    <item android:title="Steel"
+        android:id="@+id/steel"/>
+    <item android:title="Ice"
+        android:id="@+id/ice"/>
+    <item android:title="Psychic"
+        android:id="@+id/psychic"/>
+    <item android:title="Bug"
+        android:id="@+id/bug"/>
+    <item android:title="Poison"
+        android:id="@+id/poison"/>
+    <item android:title="Rock"
+        android:id="@+id/rock"/>
+    <item android:title="Ground"
+        android:id="@+id/ground"/>
+    <item android:title="Ghost"
+        android:id="@+id/ghost"/>
+    <item android:title="Electric"
+        android:id="@+id/electric"/>
+    <item android:title="Fairy"
+        android:id="@+id/fairy"/>
+
+
+</menu>

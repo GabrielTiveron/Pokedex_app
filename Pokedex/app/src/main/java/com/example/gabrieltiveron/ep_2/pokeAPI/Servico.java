@@ -19,4 +19,5 @@ public interface Servico {
     @GET("move/{id}")
     Call<Movimentos> obterMovimento(@Path( "id" ) int id);
 
+
 }

@@ -1,10 +1,21 @@
 package com.example.gabrieltiveron.ep_2.model;
 
+import java.util.ArrayList;
+
 public class Pokemon {
 
     private int number;
     private String name;
     private String url;
+    private ArrayList<Tipo> types;
+
+    public ArrayList<Tipo> getTypes() {
+        return types;
+    }
+
+    public void setTypes(ArrayList<Tipo> types) {
+        this.types = types;
+    }
 
     public int getNumber() {
         String[] urlPartes = url.split( "/" );
