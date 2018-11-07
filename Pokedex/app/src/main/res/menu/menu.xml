@@ -14,8 +14,6 @@
         android:id="@+id/water"/>
     <item android:title="Fire"
         android:id="@+id/fire"/>
-    <item android:title="Shadow"
-        android:id="@+id/shadow" />
     <item android:title="Dark"
         android:id="@+id/dark"/>
     <item android:title="Dragon"

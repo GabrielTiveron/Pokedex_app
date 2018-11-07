@@ -28,6 +28,7 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
     private Context context;
     private TreinadoresPreferences sPreferences;
 
+
     public AdapterListaTreinadores(Context context) {
         treinadores = new ArrayList<>(  );
         this.context = context;
@@ -62,14 +63,19 @@ public class AdapterListaTreinadores extends RecyclerView.Adapter<AdapterListaTr
                 }
             } );
 
+
             holder.textView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent( context, DetalhesTreinador.class );
-                    intent.putExtra( "nomeTreinador", treinadores.get( position ).getNome() );
+                    int posicao = holder.getAdapterPosition();
+                    String nome = treinadores.get( posicao ).getNome();
+                    Intent intent = new Intent(context, DetalhesTreinador.class);
+                    intent.putExtra( "nomeTreinador", nome );
                     context.startActivity( intent );
                 }
             } );
+
+
         }
 
 

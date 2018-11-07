@@ -34,13 +34,14 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
     private ArrayList<Pokemon> listaPokemon;
     private Context context;
     private Intent intent;
-    private ArrayList<PokemonDetalhes> pokemonDetalhes;
+    private ArrayList<Pokemon> pokemonPesquisa;
 
 
     public AdapterPokedex(Context context) {
         pokemons = new ArrayList<>();
         this.context = context;
         listaPokemon = new ArrayList<>();
+        pokemonPesquisa = new ArrayList<>();
     }
 
     @NonNull
@@ -81,14 +82,15 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
 
     public void Adicionar(ArrayList<Pokemon> results) {
         pokemons = new ArrayList<>();
+        pokemonPesquisa = new ArrayList<>();
         pokemons.addAll( results );
         listaPokemon.addAll( results );
+        pokemonPesquisa.addAll( results );
         notifyDataSetChanged();
     }
 
     public void AdicionarDetalhes(ArrayList<PokemonDetalhes> pDetalhes) {
         ArrayList<Pokemon> p = new ArrayList<>();
-
 
         for(PokemonDetalhes pd : pDetalhes) {
             Pokemon pk = new Pokemon();
@@ -98,6 +100,7 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
             p.add(pk);
         }
         pokemons = new ArrayList<>(  );
+        pokemonPesquisa = new ArrayList<>(  );
         Collections.sort( p, new Comparator<Pokemon>() {
             @Override
             public int compare(Pokemon o1, Pokemon o2) {
@@ -105,6 +108,7 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
             }
         } );
         pokemons.addAll( p );
+        pokemonPesquisa.addAll( p );
         notifyDataSetChanged();
     }
 
@@ -127,7 +131,7 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
         nomePokemon = nomePokemon.toLowerCase();
         pokemons.clear();
 
-        for (Pokemon p : listaPokemon) {
+        for (Pokemon p : pokemonPesquisa) {
             if (p.getName().toLowerCase().contains( nomePokemon )) {
                 pokemons.add( p );
             }
@@ -144,8 +148,6 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
         }else {
 
             for (PokemonDetalhes pd : pDetalhes) {
-                // Log.e("pd", "= " + pd.getTypes().get( 0 ).getType().getName());
-
                 if (pd.getTypes().get( 0 ).getType().getName().equals( tipo )) {
                     pokemonDetalhes.add( pd );
                 }

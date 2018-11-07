@@ -1,9 +1,11 @@
 package com.example.gabrieltiveron.ep_2.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -30,7 +32,7 @@ public class ListaTreinadores extends AppCompatActivity {
 
         if(sPreferences.getTreinadores(  ) != null) {
 
-            ArrayList<Treinador> treinadores = new ArrayList<>( Arrays.asList( sPreferences.getTreinadores() ) );
+            final ArrayList<Treinador> treinadores = new ArrayList<>( Arrays.asList( sPreferences.getTreinadores() ) );
 
 
             recyclerView = findViewById( R.id.listaTreinador );
@@ -39,6 +41,7 @@ public class ListaTreinadores extends AppCompatActivity {
 
 
             adapterListaTreinadores.adicionar( treinadores );
+
         }
 
         configurarBotaoRetorno();
