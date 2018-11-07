@@ -1,55 +1,21 @@
 # Exercício Programado 2
 
-## Introdução
+## Projeto
 
-No mundo de Pokémon, existem criaturas chamadas Pokémons. Estas criaturas possuem
-diversas caracterísiticas e atributos.
+O projeto é um aplicativo para android baseado numa Pokedex, com telas intuitivas e simples.
+Ao executar o aplicativo o usuário se deparará com três opções: Pokedex, Treinadores e Cadastro.
+Ao clicar em Alguma das opções o usuário será automaticamente redirecionado para outra tela. Como pode-se ver no [Menu](https://gitlab.com/GabrielTiveron/ep2/uploads/9e968bbd3be15be43c5477ea57d3a00a/Menu.png)
 
-Os Pokémons se organizam em tipos, e podem ser capturados por treinadores.
+## Pokedex
 
-Neste Exercício Programado, você irá criar a sua Pokédex, uma aplicação para
-visualizar informações dos Pokémons que cada treinador possui.
+[Lista todos os pokemons](https://gitlab.com/gabrieltiveron/ep2/uploads/3c3c17bbe9614a8ea89ddf12baffa041/Pokedex.png) Lista todos os pokemons e permite a busca por nomes e acesso ao detalhes de cada pokemon.
 
-## Objetivo
+### Detalhes do Pokemon
 
-Construir uma Pokédex simples. Onde os treinadores possam se cadastrar,
-e cadastrar os seus Pokémons. E possam ver as características destes Pokémons.
+Esta tela lista [detalhes](https://gitlab.com/gabrieltiveron/ep2/uploads/56d228b5c3f7cbb6942fccb7617fdb5c/Detalhes_Pokemon.png) de cada pokemon como: Nome, Tipo, Movimentos e Sprites;
 
-## Critérios de Aceitação
-
-* Realizar, quando necessário, requisição para API externa utilizada no EP através de métodos HTTP;
-
-* Listar atributos e habilidades do Pokémon após o nome deste ser informado;
-
-* Listar os nomes de todos os Pokémons de um determinado tipo;
-
-* Permitir o cadastro de um treinador;
-
-* Permitir a associação de um Pokémon a um treinador. E a visualização dos Pokémons que um treinador possui;
-
-
-### Critérios de funcionalidades da Pokédex
-
-* Implementar funcionalidades da Pokédex;
-    * Pesquisar Pokémons pelo nome;
-    * Pesquisar Pokémons pelo tipo;
-    * Cadastrar um treinador;
-    * Selecionar um treinador e atribuir os Pokémons que este possui;
-    * Visualizar os Pokémons de um treinador.
-
-### Critérios de implementação
-
-* Implementar interface gráfica para a Pokédex, utilizando Java Swing. Todas as
-funcionalidades devem poder ser realizadas através da interface.
-
-* A API externa que será consumida na realização do projeto se encontra neste [link](https://pokeapi.co/api/v2/).
-
-* Para implementação do EP, fica a cargo do aluno selecionar a IDE de sua preferência (Android Studio, Eclipse, NetBeans). 
-
-### Pontuação extra
-
-* Será acrescido de pontuação extra o projeto que possuir, em seu conteúdo, testes unitários (valores a serem definidos).
 
 ### Referências
 
 * [Consumo da API](https://square.github.io/retrofit/)
+* [Cores tema dos tipos](https://bulbapedia.bulbagarden.net/wiki/Main_Page)
