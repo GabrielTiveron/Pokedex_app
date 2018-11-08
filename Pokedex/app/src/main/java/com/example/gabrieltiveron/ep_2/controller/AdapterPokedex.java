@@ -92,15 +92,15 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
     public void AdicionarDetalhes(ArrayList<PokemonDetalhes> pDetalhes) {
         ArrayList<Pokemon> p = new ArrayList<>();
 
-        for(PokemonDetalhes pd : pDetalhes) {
+        for (PokemonDetalhes pd : pDetalhes) {
             Pokemon pk = new Pokemon();
             pk.setNumber( pd.getId() );
             pk.setName( pd.getName() );
-            pk.setUrl( "/"+pd.getId()+"/" );
-            p.add(pk);
+            pk.setUrl( "/" + pd.getId() + "/" );
+            p.add( pk );
         }
-        pokemons = new ArrayList<>(  );
-        pokemonPesquisa = new ArrayList<>(  );
+        pokemons = new ArrayList<>();
+        pokemonPesquisa = new ArrayList<>();
         Collections.sort( p, new Comparator<Pokemon>() {
             @Override
             public int compare(Pokemon o1, Pokemon o2) {
@@ -141,11 +141,11 @@ public class AdapterPokedex extends RecyclerView.Adapter<AdapterPokedex.ViewHold
 
 
     public void AdicionarTipo(final String tipo, ArrayList<PokemonDetalhes> pDetalhes) {
-        ArrayList<PokemonDetalhes> pokemonDetalhes = new ArrayList<>(  );
+        ArrayList<PokemonDetalhes> pokemonDetalhes = new ArrayList<>();
 
-        if(tipo.equals( "padrão" )){
+        if (tipo.equals( "padrão" )) {
             this.Adicionar( listaPokemon );
-        }else {
+        } else {
 
             for (PokemonDetalhes pd : pDetalhes) {
                 if (pd.getTypes().get( 0 ).getType().getName().equals( tipo )) {
