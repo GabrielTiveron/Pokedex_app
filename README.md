@@ -7,6 +7,9 @@ Ao executar o aplicativo o usuário se deparará com três opções: Pokedex, Tr
 Ao clicar em Alguma das opções o usuário será automaticamente redirecionado para outra tela. Como pode-se ver no 
 [Menu](https://gitlab.com/GabrielTiveron/ep2/uploads/0d547fd97a31ef228e8d4bf0468ec14c/Menu.png)
 
+
+Obs.: O diretorio q deve ser executado para abrir o aplicativo é o "Pokedex".
+
 ## Pokedex
 
 [Lista todos os pokemons](https://gitlab.com/GabrielTiveron/ep2/uploads/e78226a677b0ac75d5c006591fc4c760/Pokedex.png)
